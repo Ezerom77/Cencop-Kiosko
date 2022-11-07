@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <link rel="stylesheet" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="/stylesheets/general.css">
+    <title>Detalle de producto</title>
+  </head>
+  <body>
+    <%- include('./partials/header') %>
+    <main class="container">
+      <div class="form w-75 p-3 m-auto">
+        <div class="detail-heading">
+          <h1 class="form-create-title h3 mb-3 fw-bold"><%=productDetail.nombre%></h1>
+          <div class="detail-heading-bottom">
+            <!-- breadcrums -->
+            <div class="breadcrumb">
+              <span class="breadcrumb-category"><%= productDetail.categorias[0].descripcion %></span>
+              <i class="fa fa-angle-right"></i>
+              <span class="breadcrumb-name"><%=productDetail.nombre%></span>
+            </div>
+          </div>
+        </div>
+        <div class="detail-body">
+          <div class="detail-images">
+            <!-- Imagen principal -->
+            <div class="detail-main-image">
+              <img src="/images/products/<%=productDetail.imagenes[0].nombreArchivo%>"/>
+            </div>
+          </div>
+          <div class="detail-footer">
+            <div class="detail-description">
+              <h4>Código de Formulario:</h4>
+              <p><%=productDetail.codProducto%></p>
+            </div>
+            <div class="detail-description">
+              <h4>Descripción:</h4>
+              <p><%=productDetail.descripcion%></p>
+            </div>
+            <div class="detail-description">
+              <h4>Páginas:</h4>
+              <p><%=productDetail.paginas%></p>
+            </div>
+            <div class="detail-description">
+              <h4>Color:</h4>
+              <p><%=productDetail.color.descripcion%></p>
+            </div>
+            <div class="detail-description">
+              <h4>Tamaño:</h4>
+              <p><%=productDetail.size.descripcion%></p>
+            </div>
+            <div class="detail-description">
+              <h4>Categoria:</h4>
+                <ul>
+                  <% for( let i = 0; i < productDetail.categorias.length; i++ ) { %>
+                  <li><%=productDetail.categorias[i].descripcion %>
+                  </li>
+                  <% } %>
+                </ul>
+            </div>
+            </div>
+            <div class="detail-order">
+            <%# Form de prueba para agregar cantidad %>
+            <div class="ajusteform row g-3">
+            <form
+              method="post"
+              action="/cart/add/<%= productDetail.id %>"
+              enctype="application/x-www-form-urlencoded"
+              >
+              <div class="col-md-3">
+                <label for="cantidad" class="form-label">Cantidad</label>
+                <input type="number" min="1" max="300" class="form-control m-1" id="cantidad"  name="cantidad" required>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-success m-1" type="submit">Agregar al pedido</button>
+              </div>
+            </form>
+            <a href="/products">
+              <button class="btn btn-warning m-1">Volver</button>
+            </a>
+            <% if (auth.admin) { %>
+              <a href="/products/edit/<%= productDetail.id %>">
+                <button class="btn btn-warning m-1">Editar Producto</button>
+              </a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+<!--       <script src="/js/productDetail.js"></script> -->
+    </main>
+    <%- include('./partials/footer') %>
+</body>
+</html>

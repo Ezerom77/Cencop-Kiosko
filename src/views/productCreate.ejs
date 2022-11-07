@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <link rel="stylesheet" href="/stylesheets/products.css" />
+    <link rel="stylesheet" href="/stylesheets/general.css" />
+    <script src="/js/productValidation.js"></script>
+    <title>Alta de producto</title>
+  </head>
+
+  <body>
+    <%- include('./partials/header') %>
+    <main class="container">
+      <div class="form w-75 p-3 m-auto">
+      <h1 class="form-product-title h5 mb-3 fw-bold m-2 ">
+        Bienvenido/a <%= auth.nombre %> !<br />Por favor completar los datos del producto:
+      </h1>
+      <form
+        method="post"
+        action="/products/create"
+        enctype="multipart/form-data"
+        class="productCreateForm"
+      >
+        <div class="form-group">
+          <label for="productCode">Código de producto</label>
+          <input
+            type="text"
+            class="form-control <%= locals.errors && errors.productCode ? 'is-invalid' : null %>"
+            id="productCode"
+            name="productCode"
+            value="<%= locals.oldData ? oldData.productCode : null %>"
+          />
+          <p id="prodCodeError" class="errorTextFront"></p>
+          <% if (locals.errors && errors.productCode) { %>
+          <p class="errorTextBack"><%= errors.productCode.msg %></p>
+          <% } %>
+        </div>
+        <div class="form-group">
+          <label for="productName">Nombre de producto</label>
+          <input
+            type="text"
+            class="form-control <%= locals.errors && errors.productName ? 'is-invalid' : null %>"
+            id="productName"
+            name="productName"
+            value="<%= locals.oldData ? oldData.productName : null %>"
+          />
+          <p id="prodNameError" class="errorTextFront"></p>
+          <% if (locals.errors && errors.productName) { %>
+          <p class="errorTextBack"><%= errors.productName.msg %></p>
+          <% } %>
+        </div>
+        <div class="form-group">
+          <label for="productDescription">Descripción</label>
+          <input
+            type="textarea"
+            class="form-control <%= locals.errors && errors.productDescription ? 'is-invalid' : null %>"
+            id="productDescription"
+            name="productDescription"
+            rows="3"
+            value="<%= locals.oldData ? oldData.productDescription : null %>"
+          />
+          <p id="prodDescError" class="errorTextFront"></p>
+          <% if (locals.errors && errors.productDescription) { %>
+          <p class="errorTextBack"><%= errors.productDescription.msg %></p>
+          <% } %>
+        </div>
+        <div class="form-group">
+          <label for="categorias">Categoría</label>
+          <select
+            class="form-control <%= locals.errors && errors.productCategory ? 'is-invalid' : null %>"
+            id="categorias"
+            name="categorias"
+          >
+            <% for( let i = 0; i < categorias.length; i++ ) { %>
+            <option value="<%= categorias[i].id %>">
+              <%= categorias[i].descripcion %>
+            </option>
+            <% } %>
+          </select>
+          <p id="prodCatError" class="errorTextFront"></p>
+          <% if (locals.errors && errors.categorias) { %>
+          <p class="errorTextBack"><%= errors.categorias.msg %></p>
+          <% } %>
+        </div>
+        <div class="form-group">
+          <label for="size">Tamaño de papel</label>
+          <select
+            class="form-select <%= locals.errors && errors.size ? 'is-invalid' : null %>"
+            name="size"
+            id="size"
+            value="<%= locals.oldData ? oldData.size : null %>"
+          >
+            <% if (locals.errors && errors.size) { %>
+            <p class="errorTextBack"><%= errors.size.msg %></p>
+            <% } %> <% for( let i = 0; i < sizes.length; i++ ) { %>
+
+            <option value="<%= sizes[i].id %>">
+              <%= sizes[i].descripcion %>
+            </option>
+            <% } %>
+            <!--
+            lineas en blanco para seguir la numeracion de ProductEdit.ejs
+           -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="color">Color</label>
+          <select
+            class="form-select <%= locals.errors && errors.color ? 'is-invalid' : null %>"
+            name="color"
+            id="color"
+            value="<%= locals.oldData ? oldData.color : null %>"
+          >
+            <% if (locals.errors && errors.color) { %>
+            <p class="errorTextBack"><%= errors.color.msg %></p>
+            <% } %> <% for( let i = 0; i < colores.length; i++ ) { %>
+            <option value="<%= colores[i].id %>">
+              <%= colores[i].descripcion %>
+            </option>
+            <% } %>
+          </select>
+            <div class="form-group">
+              <label for="cobertura">Indice de Cobertura</label>
+              <input
+                type="number"
+                step="any"
+                min="0.04"
+                max="1"
+                class="form-control <%= locals.errors && errors.cobertura ? 'is-invalid' : null %>"
+                id="cobertura"
+                name="cobertura"
+                value="<%= locals.oldData ? oldData.cobertura : null %>"
+              />
+              <p id="prodPriceError" class="errorTextFront"></p>
+              <% if (locals.errors && errors.cobertura) { %>
+              <p class="errorTextBack"><%= errors.cobertura.msg %></p>
+              <% } %>
+            </div>
+            <!--
+            lineas en blanco para seguir la
+            numeracion de ProductEdit.ejs
+           -->
+        </div>
+        <div class="form-group">
+          <label for="paginas">Páginas</label>
+          <input
+            type="number"
+            class="form-control <%= locals.errors && errors.paginas ? 'is-invalid' : null %>"
+            id="paginas"
+            name="paginas"
+            value="<%= locals.oldData ? oldData.paginas : null %>"
+          />
+          <p id="prodPriceError" class="errorTextFront"></p>
+          <% if (locals.errors && errors.paginas) { %>
+          <p class="errorTextBack"><%= errors.paginas.msg %></p>
+          <% } %>
+        </div>
+
+        <div class="mb-3">
+          <label for="formFile" for="productImage">Imagen: (Miniatura del producto)</label>
+          <input
+            type="file"
+            class="form-control <%= locals.errors && errors.productImage ? 'is-invalid' : null %>"
+            id="productImage"
+            name="productImage"
+            alt="Imagenes del producto"
+            accept=".jpeg, .jpg, .pdf,.png"
+            value="<%= locals.oldData ? oldData.productImage : null %>"
+            required
+          />
+          <p id="prodImgError" class="errorTextFront"></p>
+          <% if (locals.errors && errors.productImage) { %>
+          <p class="errorTextBack"><%= errors.productImage.msg %></p>
+          <% } %>
+        </div>
+        <br />
+        <button class="btn btn-success btn-lg" type="submit" id="submit">
+          Crear Producto
+        </button>
+      </form>
+      <!--
+        lineas en blanco para seguir la numeracion de ProductEdit.ejs
+       -->
+      </div>
+    </main>
+
+    <%- include('./partials/footer') %>
+  </body>
+</html>

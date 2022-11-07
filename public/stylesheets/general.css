@@ -1,0 +1,32 @@
+/*///////////////// Fonts ////////////////*/
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+/*///////////////// GENERAL STYLES ////////////////*/
+:root {
+  --yellow: #EAC926;
+  --dark-blue: #03264C;
+  --light-blue: #1259c3;
+  --gray: #666666;
+  --light-gray: #ebebeb;
+  /* --green: #39b54a; */
+  /* --clessidra: #2bc37f; */
+  --clessidra: #00b171;
+  --green: #198754;
+  --base-font-family: 'Lato', sans-serif
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0px;
+  font: 14px "Lato", Helvetica, Arial, sans-serif;
+  background-color: #fbfbff;
+  margin: auto;
+
+}
+

@@ -1,0 +1,252 @@
+/*/////////  CARRITO /////////*/ 
+
+.cart-maincontainer{
+    display: flex;
+    flex-direction: row;
+    flex-direction: column;
+    margin: auto;
+    background-color: white;
+    width: 1000px;
+    max-width: 90vw;
+    padding: 20px 0;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 15px 30px rgb(0 0 0 / 10%);
+    border-radius:  5px;
+    min-height: 50vh;
+  }
+
+  .cart-maincontainer h1{
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .cart-maincontainer h2{
+
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .cart-box{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin: auto;
+    width: 100%;
+    max-width: 90vw;
+  }
+
+.cart-box-item{
+    display: flex;
+    flex-direction: row;
+    align-items: space-between;
+    flex-wrap: wrap;
+    margin: auto;
+    margin-bottom: 10px;
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 100%;
+    gap: 18px;
+  }
+
+
+  .cart-box-item-img{
+    width: 100px;
+
+  }
+
+.cart-box-item-image img{
+    display: block;
+    max-height: 150px;
+    border: 1px solid var(--clessidra);
+    box-shadow: 0 0px 30px rgba(0, 0, 0, 0.1);
+}
+
+.cart-box-item-info{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    flex: 3;
+    max-width: 90vw;
+    gap: 3px;
+    margin-top: 0px;
+    
+}
+
+.cart-box-item-info h3{
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-top: 0px;
+    font-size: 22px;
+}
+
+.cart-box-item-info h4{
+    font-weight: bold;
+    text-align: left;
+    margin-top: 0px;
+    color: var(--clessidra);
+    font-size: 15px;
+
+}
+
+
+.cart-box-item-detail{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    flex: 1;
+    max-width: 90vw;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+.cart-box-item-detail h3{
+    font-weight: bold;
+    text-align: left;
+    margin-top: 0px;
+    font-size: 14px;
+}
+
+.cart-box-item-remove{
+    display: flex;
+    flex: 1.5;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: auto;
+    width: 25px;
+}
+
+.item-remove{
+    border-radius: 10px;    
+    padding: 10px;
+    margin: auto;
+    height: fit-content !important;
+}
+
+.cart-box-item-remove a{
+    color: white;
+    text-decoration: none;
+}
+
+.cart-box-item-remove:hover a{
+    color: white;
+    text-decoration: none;
+}
+
+
+.cart-box-item-total {     
+    display: flex;
+    justify-content: flex-end;
+    max-width: 90vw;
+    width: 100%;
+    padding-right: 100px;
+    gap: 3px;
+    margin: 0px 15px 0px 0px;
+
+}
+
+.cart-box-item-total h3{
+  font-size: 22px;
+  font-weight: 900;
+  color: #000000;
+  
+
+}
+
+.cart-box-item-price{
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: 90vw;
+    gap: 3px;
+    margin-top: 0px;
+}
+
+.cart-box-item-price h3{ 
+    font-weight: bold;
+    text-align: left;
+    margin-top: 0px;
+    font-size: 18px;
+}
+
+.checkout-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: auto;
+    max-width: 90vw;
+    width: 90%;
+    gap: 3px;
+    margin-top: 0px;
+    align-items: center;
+}
+
+.checkout-buttons a{
+    color: white;
+    text-decoration: none;
+}
+
+.checkout-buttons:hover a{
+  color: white;
+  text-decoration: none;
+}
+
+.btn-enviar{
+    height: 40px;
+    border: 1px solid #ee964b;
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0s;
+    background-color: #75BE49;
+
+}
+
+.btn-editar{
+    height: 40px;
+    border: 1px solid #ee964b;
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0s;
+    background-color: #ee964b
+
+}
+
+.btn-comprar{
+  height: 40px;
+  border: 1px solid #ee964b;
+  font-size: 13px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0s;
+  background-color: #75BE49;;
+
+}
+
+.btn-borrar{
+    height: 40px;
+    border: 1px solid #ee964b;
+    font-size: 13px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0s;
+    background-color: #ee964b;
+
+}
+    
+.btn-borrar:hover, .btn-enviar:hover, .btn-editar:hover, .btn-comprar:hover{
+    background-color: #000000;
+    color: white;      
+}
+      
+.btn-borrar .btn-enviar .btn-editar .btn-comprar a{
+    color: white;
+    text-decoration: none;
+}
+
+
+

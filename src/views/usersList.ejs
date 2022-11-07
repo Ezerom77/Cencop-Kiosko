@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('./partials/head') %>
+        <title>Usuarios</title>
+         <%# CSS de DataTable %>
+    <link
+    rel="stylesheet"
+    href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css"
+  />
+    </head>
+    <body>
+    <%- include('./partials/header') %>
+
+
+    <main class="container mt-3 mb-2">
+        <table
+          id="users"
+          class="table table-striped mt-6 mh-100 "
+        >
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach(user => { %>
+            <tr>
+              <td><%=user.id%></td>
+              <td><%=user.nombre%></td>
+              <td><%=user.apellido%></td>
+              <td><a href="mailto:<%=user.email%>" target="_blank"><%=user.email%></a></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </main>
+      <%# Scripts para Datatable %>
+      <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+      <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+      <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+      <%# Scripts funcional Datatable %>
+      <script>
+        $(document).ready(function () {
+          $("#users").DataTable({
+            language: {
+              decimal: ",",
+              thousands: ".",
+              lengthMenu: "Mostrar _MENU_ registros",
+              info: "Mostrando _START_ a _END_ sobre _TOTAL_ registros",
+              search: "Buscar:",
+              zeroRecords: "No matching records found",
+              
+              paginate: {
+                first: "Primero",
+                last: "Ultimo",
+                next: "Siguiente",
+                previous: "Anterior",
+              },
+            },
+          });
+        });
+      </script>
+        <%- include('./partials/footer') %> 
+
+    </body>
+</html>
+

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+    <link rel="stylesheet" href="/stylesheets/users.css" />
+    <link rel="stylesheet" href="/stylesheets/general.css" />
+    <script src="/js/userRegisterValidation.js"></script>
+    <script
+      src="https://kit.fontawesome.com/3c9eeab8c1.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Registro</title>
+  </head>
+
+  <body>
+    <%- include('./partials/header') %>
+    <main class="form-signin">
+      <div>
+        <a class="form-signin-logo" href="/">Bienvenido/a!</a>
+      </div>
+      <form
+        method="post"
+        action="/users/registro"
+        enctype="application/x-www-form-urlencoded"
+        class="registerForm"
+        onsubmit="verificarPasswords(); return false"
+      >
+        <h1 class="form-user-title h5">
+          Por favor registrate con tus datos:
+        </h1>
+        <br />
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="mb-3" id="nameInput">
+              <label for="nombre" class="form-label">Nombre</label>
+              <input
+                type="text"
+                class="form-control <%= locals.errors && errors.userName ? 'is-invalid' : null %>"
+                id="nombre"
+                name="userName"
+                placeholder="Juan"
+                value="<%= locals.oldData ? oldData.userName : null %>"
+                required
+              />
+
+              <p id="nameError" class="errorTextFront"></p>
+              <% if (locals.errors && errors.userName) { %>
+              <p class="errorTextBack"><%= errors.userName.msg %></p>
+              <% } %>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="mb-3" id="surnameInput">
+              <label class="form-label" for="apellido">Apellido *</label>
+              <input
+                type="text"
+                class="form-control <%= locals.errors && errors.userLastName ? 'is-invalid' : null %>"
+                id="apellido"
+                name="userLastName"
+                placeholder="Perez"
+                value="<%= locals.oldData ? oldData.userLastName : null %>"
+                required
+              />
+              <p id="apellidoError" class="errorTextFront"></p>
+              <% if (locals.errors && errors.userLastName) { %>
+              <p class="errorTextBack"><%= errors.userLastName.msg %></p>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md">
+          <div class="mb-3" id="sectorInput">
+            <label for="sector">Sector</label>
+            <select
+              type="text"
+              class="form-control <%= locals.errors && errors.sector ? 'is-invalid' : null %>"
+              id="sector"
+              name="userSector"
+              value="<%= locals.oldData ? oldData.sector : null %>"
+              placeholder="Seleccione un sector"
+              required
+            >
+              <p id="sectorError" class="errorTextFront"></p>
+              <% if (locals.errors && errors.sector) { %>
+              <p class="errorTextBack">
+                <%= errors.sector.msg %>
+              </p>
+              <% } %>
+              <% for( let i = 0; i < sector.length; i++ ) { %>
+
+                <option value="<%= sector[i].id %>">
+                  <%= sector[i].sector %>
+                </option>
+                <% } %>
+            </select>
+          </div>
+        </div>
+
+        <div class="mb-3" id="emailInput">
+          <label for="email">Correo electrónico *</label>
+          <input
+            type="email"
+            class="form-control <%= locals.errors && errors.userEmail ? 'is-invalid' : null %>"
+            id="email"
+            name="userEmail"
+            placeholder="name@example.com"
+            value="<%= locals.oldData ? oldData.userEmail : null %>"
+            required
+          />
+          <p id="emailError" class="errorTextFront"></p>
+          <% if (locals.errors && errors.userEmail) { %>
+          <p class="errorTextBack"><%= errors.userEmail.msg %></p>
+          <% } %>
+          <% if (locals.error) { %>
+            <p class="errorTextBack"><%= error %></p>
+            <% } %>
+        </div>
+
+        <div class="mb-3" id="passwordInput">
+          <label for="password">Elegir contraseña *</label>
+          <input
+            type="password"
+            class="form-control <%= locals.errors && errors.userPassword ? 'is-invalid' : null %>"
+            id="password"
+            name="userPassword"
+            placeholder="Contraseña"
+            required
+          />
+          <p id="contrasenaError" class="errorTextFront"></p>
+          <% if (locals.errors && errors.userPassword) { %>
+          <p class="errorTextBack"><%= errors.userPassword.msg %></p>
+          <% } %>
+        </div>
+        <div class="mb-3" id="password2Input">
+          <label for="password2">Repetir contraseña *</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password2"
+            name="userPassword2"
+            placeholder="Contraseña"
+            required
+          />
+         
+    
+        </div>
+        
+        <br />
+        <%# commented INICIA bloque Telefono %>
+        <h3 class="form-user-title h5">Teléfono celular</h3>
+        <div class="row g-1">
+          <div class="col-3">
+            <div class="mb-3" id="areaInput">
+              <label for="area">Cód. de área</label>
+              <input
+                type="number"
+                class="form-control <%= locals.errors && errors.area ? 'is-invalid' : null %>"
+                id="area"
+                name="area"
+                value="<%= locals.oldData ? oldData.area : null %>"
+                required
+              />
+              <p id="areaError" class="errorTextFront"></p>
+              <% if (locals.errors && errors.area) { %>
+              <p class="errorTextBack"><%= errors.area.msg %></p>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="col-9">
+            <div class="mb-3" id="numeroInput">
+              <label for="numero">Número</label>
+              <input
+                type="number"
+                class="form-control <%= locals.errors && errors.numero ? 'is-invalid' : null %>"
+                id="numero"
+                name="numero"
+                value="<%= locals.oldData ? oldData.numero : null %>"
+                required
+              />
+              <p id="numeroError" class="errorTextFront"></p>
+              <% if (locals.errors && errors.numero) { %>
+              <p class="errorTextBack"><%= errors.numero.msg %></p>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <%# commented INICIA bloque direccion %>
+        <div class="direccion">
+          <h3 class="form-user-title h5">Dirección de entrega</h3>
+          <div class="row g-2">
+            <div class="col-9">
+              <div class="mb-3" id="calleInput">
+                <label for="calle">Calle</label>
+                <input type="text" class="form-control <%= locals.errors &&
+                errors.calle ? 'is-invalid' : null %>" id="calle"
+                name="calle" placeholder="Galvan" value="<%= locals.oldData ?
+                oldData.calle : "Galván" %>" required/>
+                <p id="calleError" class="errorTextFront"></p>
+                <% if (locals.errors && errors.calle) { %>
+                <p class="errorTextBack"><%= errors.calle.msg %></p>
+                <% } %>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3" id="nroInput">
+                <label for="nro">Nro.</label>
+                <input
+                  type="number"
+                  class="form-control <%= locals.errors && errors.nro ? 'is-invalid' : null %>"
+                  id="nro"
+                  name="nro"
+                  value="<%= locals.oldData ? oldData.nro : 4102 %>"
+                  required
+                />
+                <p id="nroError" class="errorTextFront"></p>
+                <% if (locals.errors && errors.nro) { %>
+                <p class="errorTextBack"><%= errors.nro.msg %></p>
+                <% } %>
+              </div>
+            </div>
+          </div>
+          <div class="row g-2">
+            <div class="col-3">
+              <div class="mb-3" id="pisoInput">
+                <label for="piso">Piso</label>
+                <input
+                  type="text"
+                  class="form-control <%= locals.errors && errors.piso ? 'is-invalid' : null %>"
+                  id="piso"
+                  name="piso"
+                  value="<%= locals.oldData ? oldData.piso : null %>"
+                  required
+                />
+                <p id="pisoError" class="errorTextFront"></p>
+                <% if (locals.errors && errors.piso) { %>
+                <p class="errorTextBack"><%= errors.piso.msg %></p>
+                <% } %>
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="mb-3" id="ofInput">
+                <label for="of">Oficina</label>
+                <input
+                  type="text"
+                  class="form-control <%= locals.errors && errors.of ? 'is-invalid' : null %>"
+                  id="of"
+                  name="of"
+                  value="<%= locals.oldData ? oldData.of : null %>"
+                />
+                <p id="ofError" class="errorTextFront"></p>
+                <% if (locals.errors && errors.of) { %>
+                <p class="errorTextBack"><%= errors.of.msg %></p>
+                <% } %>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="mb-3" id="ciudadInput">
+                <label for="ciudad">Ciudad</label>
+                <select
+                  type="text"
+                  class="form-control <%= locals.errors && errors.ciudad ? 'is-invalid' : null %>"
+                  id="ciudad"
+                  name="ciudad"
+                  value="<%= locals.oldData ? oldData.ciudad : null %>"
+                  required
+                >
+                  <p id="ciudadError" class="errorTextFront"></p>
+                  <% if (locals.errors && errors.ciudad) { %>
+                  <p class="errorTextBack">
+                    <%= errors.ciudad.msg %>
+                  </p>
+                  <% } %>
+                  <% for( let i = 0; i < ciudades.length; i++ ) { %>
+
+                    <option value="<%= ciudades[i].id %>">
+                      <%= ciudades[i].ciudad %>
+                    </option>
+                    <% } %>
+                </select>
+              </div>
+            </div>
+            <div class="row g-2">
+              <div class="col-3">
+              <div class="mb-3" id="cpInput">
+                <label for="cp">CP</label>
+                <input type="text" class="form-control <%= locals.errors &&
+                errors.cp ? 'is-invalid' : null %>" id="cp" name="cp"
+                value="<%= locals.oldData ? oldData.cp : "C1431" %>"
+                required
+                />
+                <p id="cpError" class="errorTextFront"></p>
+                <% if (locals.errors && errors.cp) { %>
+                <p class="errorTextBack"><%= errors.cp.msg %></p>
+                <% } %>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="mb-3" id="provinciaInput">
+                <label for="provincia">Provincia</label>
+                <select
+                  type="text"
+                  class="form-control <%= locals.errors && errors.provincia ? 'is-invalid' : null %>"
+                  id="provincia"
+                  name="provincia"
+                  value="<%= locals.oldData ? oldData.provincia : null %>"
+                  required
+                >
+                  <p id="provinciaError" class="errorTextFront"></p>
+                  <% if (locals.errors && errors.provincia) { %>
+                  <p class="errorTextBack">
+                    <%= errors.provincia.msg %>
+                  </p>
+                  <% } %>
+                  <% for( let i = 0; i < provincias.length; i++ ) { %>
+
+                    <option value="<%= provincias[i].id %>">
+                      <%= provincias[i].provincia %>
+                    </option>
+                    <% } %>
+                </select>
+              </div>
+            </div>
+            <div class="col-5">
+              <div class="mb-3" id="paisInput">
+                <label for="pais">País</label>
+                <select
+                  type="text"
+                  class="form-control <%= locals.errors && errors.pais ? 'is-invalid' : null %>"
+                  id="pais"
+                  name="pais"
+                  value="<%= locals.oldData ? oldData.pais : null %>"
+                  required
+                >
+                  <p id="paisError" class="errorTextFront"></p>
+                  <% if (locals.errors && errors.pais) { %>
+                  <p class="errorTextBack"><%= errors.pais.msg %></p>
+                  <% } %>
+                  <% for( let i = 0; i < paises.length; i++ ) { %>
+
+                    <option value="<%= paises[i].id %>">
+                      <%= paises[i].pais %>
+                    </option>
+                    <% } %>
+                </select>
+              </div>
+            </div>
+          </div>
+          <%# commented FIN bloque direccion %>
+        </div>
+        <br />
+        <div class="checkbox mb-3">
+          <label for="terminosCondiciones">
+            Acepto los <a href="#!">Términos y Condiciones *</a>
+          </label>
+          <input
+            type="checkbox"
+            name="userTermsAccept"
+            id="terminosCondiciones"
+            required
+          />
+          <p id="termsError" class="errorTextFront"></p>
+          <% if (locals.errors && errors.userTermsAccept) { %>
+          <p class="errorTextBack"><%= errors.userTermsAccept.msg %></p>
+          <% } %>
+        </div>
+        <div id="msg"></div>
+        <!-- Mensajes de Verificación -->
+        <div id="error" class="alert alert-danger ocultar" role="alert">
+          Las Contraseñas no coinciden, vuelva a intentarlo !
+      </div>
+      <div id="ok" class="alert alert-success ocultar" role="alert">
+          Procesando el formulario
+      </div>
+      <!-- Fin Mensajes de Verificación -->
+        <div class="d-grid gap-2">
+        <button class="btn btn-success" type="submit" id="submit">
+          Registrarme
+        </button>
+      </div>
+      </form>
+    </main>
+    <%- include('./partials/footer') %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+      function verificarPasswords() {
+        // Ontenemos los valores de los campos de contraseñas 
+        pass1 = document.getElementById('password');
+        pass2 = document.getElementById('password2');
+        // Verificamos si las constraseñas no coinciden 
+        if (pass1.value != pass2.value) {
+            // Si las constraseñas no coinciden mostramos un mensaje 
+            document.getElementById("error").classList.add("mostrar");
+            return false;
+        } else {
+            // Si las contraseñas coinciden ocultamos el mensaje de error
+            document.getElementById("error").classList.remove("mostrar");
+            // Mostramos un mensaje mencionando que las Contraseñas coinciden 
+            document.getElementById("ok").classList.remove("ocultar");
+            // Desabilitamos el botón de login 
+            document.getElementById("login").disabled = true;
+            // Refrescamos la página (Simulación de envío del formulario) 
+            setTimeout(function() {
+                location.reload();
+            }, 3000);
+            return true;
+        }
+    }
+    </script>
+  </body>
+</html>

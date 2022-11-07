@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head') %>
+  <link rel="stylesheet" href="/stylesheets/products.css">
+  <link rel="stylesheet" href="/stylesheets/general.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <script src="/js/productValidation.js"></script>
+  <title>Editar producto</title>
+</head>
+
+<body>
+  <%- include('./partials/header') %>
+  <main class="form-create">
+    <h1 class="form-create-title h5 mb-3 fw-bold">Estás editando:<br><i><%=ProductoAEditar.nombre %></i></h1>
+    <form method="post" action="/products/edit/<%=ProductoAEditar.id%>?_method=PUT" >
+      <div class="form-group">
+        <label for="productName">Nombre:</label>
+        <input
+        type="text"
+        class="form-control"
+        id="productName"
+        name="productName"
+        value= '<%= locals.oldData ? oldData.productName : ProductoAEditar.nombre%>'
+        >
+        <p id="prodNameError" class="errorTextFront"></p>
+        <% if (locals.errors && errors.productName) { %>
+          <p class="errorTextBack"> <%= errors.productName.msg %> </p>
+        <% } %>
+      </div>
+      <div class="form-group">
+        <label for="productDescription">Descripción:</label>
+        <input
+        type="textarea"
+        class="form-control"
+        id="productDescription"
+        name="productDescription"
+        rows="3"
+        value="<%= locals.oldData ? oldData.productDescription : ProductoAEditar.descripcion %>"
+        >
+        <p id="prodDescError" class="errorTextFront"></p>
+        <% if (locals.errors && errors.productDescription) { %>
+          <p class="errorTextBack"> <%= errors.productDescription.msg %> </p>
+        <% } %>
+      </div>
+      <div class="form-group">
+        <label for="Categorias">Categoría:</label>
+        <select
+        multiple
+        class="form-control"
+        id="categorias"
+        name="categorias"
+        required>
+          <% for( let i = 0; i < categorias.length; i++ ) { %>
+            <option value="<%= categorias[i].id %>"><%= categorias[i].descripcion   %></option>
+          <% } %>
+        </select>
+        <p id="prodCatError" class="errorTextFront"></p>
+        <% if (locals.errors && errors.categorias) { %>
+          <p class="errorTextBack"> <%= errors.categorias.msg %> </p>
+        <% } %>
+      </div>
+      <div class="form-group">
+        <label for="talle">Tamaño:</label>
+        <select
+        class="form-select"
+        name="talle"
+        id="talle"
+        value= '<%= locals.oldData ? oldData.talle : ProductoAEditar.talle %>'
+        >
+        <% if (locals.errors && errors.talle) { %>
+          <p class="errorTextBack"> <%= errors.talle.msg %> </p>
+        <% } %>
+          <% for( let i = 0; i < sizes.length; i++ ) { %>
+            <%if ( sizes[i].id == ProductoAEditar.id_talle) { %>
+              <option value="<%= sizes[i].id %>" selected><%= sizes[i].descripcion %></option>
+              <% } else { %>
+                <option value="<%= sizes[i].id %>"><%= sizes[i].descripcion %></option>
+                <% } %>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="color">Color:</label>
+        <select
+        class="form-select"
+        id="color"
+        name="color"
+        value= '<%= locals.oldData ? oldData.color : ProductoAEditar.color %>'
+        >
+        <% if (locals.errors && errors.color) { %>
+          <p class="errorTextBack"> <%= errors.color.msg %> </p>
+        <% } %>
+        <%for ( let i = 0; i < colores.length; i++ ) { %>
+            <%if ( colores[i].id == ProductoAEditar.id_color) { %>
+              <option value="<%= colores[i].id %>" selected><%= colores[i].descripcion   %></option>
+              <% } else { %>
+                <option value="<%= colores[i].id %>"><%= colores[i].descripcion   %></option>
+                <% } %>
+          <% } %>
+          </select>
+      </div>
+      <div class="form-group">
+        <label for="productPrice">Precio de venta $</label>
+        <input
+        type="number"
+        class="form-control"
+        id="productPrice"
+        name="productPrice"
+        value= '<%= locals.oldData ? oldData.productPrice : ProductoAEditar.precio %>'
+        >
+        <p id="prodPriceError" class="errorTextFront"></p>
+        <% if (locals.errors && errors.productPrice) { %>
+          <p class="errorTextBack"> <%= errors.productPrice.msg %> </p>
+        <% } %>
+      </div>
+      <br>
+      <div class="d-grid gap-2 m-1">
+      <button class="btn btn-success " type="submit">Actualizar</button>
+    </div>
+    </form>
+    <form method="post" action="/products/edit/<%=ProductoAEditar.id%>?_method=DELETE" >
+      <div class="d-grid gap-2 m-1">
+    <button onclick="return confirm('Si acepta el producto será eliminado ¿esta seguro?')" class="btn btn-danger" type="submit">Eliminar</button>
+  </div>
+    </form>
+  </main>
+
+<%- include('./partials/footer') %>
+</body>
+</html>

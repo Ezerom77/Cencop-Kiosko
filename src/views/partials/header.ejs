@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="/stylesheets/header.css">
+<link rel="stylesheet" href="/stylesheets/general.css">
+<header class="mainheader">
+    <div class="topheader-container-main">
+        <div class="topheader-container-left">
+            <div class="mainheader-logo">
+                <a href="/" title="Home"><img src="/images/logocemic.png" alt=""></a>
+            </div>
+        </div>
+        <div class="topheader-container-right">
+            <div class="user-links">
+                <% if (auth) { %>
+                    <a href="/users/perfil">Perfil<i class="fas fa-user"></i></a>
+                <% } else { %>
+                <a href="/users/login">Ingresar<i class="fas fa-sign-in-alt"></i></a>
+                <a href="/users/registro">Registrarse<i class="fas fa-user-circle"></i></a></span>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <div class="bottomheader-container-main">
+        <div class="navbarmain">
+            <% if (auth) { %>
+
+            <ul class="nav-links">
+                <li>
+                    <a href="/products">Catálogo</a>
+                </li>
+                <li>
+                    <a href="/cart">Mi Pedido</a>
+                </li>
+                <li>
+                    <a href="/order">Ordenes</a>
+                </li>
+                <% if (auth.admin) { %>
+                    <li>
+                        <a href="/products/create">Nuevo producto</a>
+                    </li>
+                    <li>
+                        <a href="/users">Usuarios</a>
+                    </li>
+                <% } %>
+                <script>
+                    const navbar = document.querySelector(".navbarmain");
+                    const links = document.querySelectorAll(".nav-links li a");
+                    const path = window.location.pathname;
+                    links.forEach(link => {
+                        if(link.getAttribute("href") == path){
+                            link.classList.add("active");
+                        }});
+                        </script>
+            </ul>
+            <% } %>
+        </div>
+        <% if (auth) { %>
+        <div class="dropdown">
+            <button class="dropbtn">Menu Principal
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="/products">Catálogo</a>
+                    <% if (auth.admin) { %>
+                        <a href="/products/create">Nuevo producto</a>
+                    <% } %>
+                    <a href="/cart">Pedido</a>
+                </div>
+            </div>
+            <% } %>
+            <div class="dropdown">
+                <button class="dropbtn">Usuarios
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <% if (auth) { %>
+                        <a href="/users/perfil">Perfil <i class="fas fa-user"></i></a>
+                        <% } else { %>
+                        <a href="/users/login">Ingresar <i class="fas fa-sign-in-alt"></i></a>
+                        <a href="/users/registro">Registrarse <i class="fas fa-user-circle"></i></a>
+                        <% } %>
+                    </div>
+                </div>
+    </div>
+</div>
+</header>
+

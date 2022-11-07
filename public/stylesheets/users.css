@@ -1,0 +1,177 @@
+
+/*//////////////////   USER REGISTER & LOGIN & EDIT   ///////////////////////*/
+
+.form-signin {
+  width: 100%;
+  max-width: 560px !important;
+  padding: 15px; 
+  margin: auto;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 40px auto;
+  /* min-height: 60vh; */
+} 
+
+.form-user-title, .form-create-title{
+  text-align: center;
+  color: #000000;
+  
+  }
+
+.form-floating{
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  margin: 5px 0;
+  }
+
+.form-control{
+  width: 100%;
+  max-width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 0px;
+  }
+
+.form-signin .checkbox {
+  display: block;
+  font-weight: 400;
+  margin-bottom: -1px;
+}
+
+.form-signin-logo{
+    color: #6c6161;
+    font-weight: 700;
+    display: block;
+    font-size: 1.5em;
+    margin: auto;
+    border-bottom: #c5c5c5 solid 1px;
+    text-align: center;
+    max-width: 500px;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.form-signin-logo:hover{
+    color: var(--clessidra);
+
+ }
+
+ .form-title{
+  text-align: center;
+  font-size: 18px;
+  font-weight: bolder;
+  color: #000000;
+ }
+
+ .errorTextFront{
+  color: red;
+  font-size: 12px;
+  margin: 0px;
+ }
+
+.errorTextBack{
+  color: red;
+  font-size: 12px;
+  margin: 0px;
+}
+
+.form-floating-img{
+  padding-top: -1px ;
+  position: relative; 
+  
+}
+
+.form-floating-img #profilePic{
+  position: absolute;
+  width: 100%;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  height: 100%;
+  opacity: 0;
+}
+
+/* .uploadFile {
+  font-size: 14px;
+  font-weight: 400;
+  padding: 7px;
+  background-color: #ee964b;
+  text-align: center;
+  border-radius: 3px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  color: white;
+  
+} */
+/* 
+.profile-img{
+  display: block;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  
+  border: 2px solid #fff;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+} */
+
+
+.btn-enviar{
+  width: 100px;
+  height: 40px;
+  border: 1px solid #ee964b;
+  font-size: 13px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0s;
+  background-color: #198754
+}
+
+.btn-enviar:hover{
+  background-color: #000000;
+
+}
+
+
+
+.btn-borrar{
+  width: 50px;
+  height: 40px;
+  border: 1px solid #ee964b;
+  font-size: 13px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0s;
+  background-color: orangered;
+  margin-top: 10px;
+}
+
+.btn-borrar:hover, .btn-editar:hover{
+  background-color: #000000;
+
+}
+
+.form-group-ctr{
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3px;
+  margin: 5px 0;
+}
+
+.ocultar {
+  display: none;
+}
+
+.mostrar {
+  display: block;
+}
